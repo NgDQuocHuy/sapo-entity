@@ -1,6 +1,5 @@
 package vn.fx.qh.sapo.entities.order.purchase;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +8,6 @@ import vn.fx.qh.sapo.entities.product.Product;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.Instant;
 
 @NoArgsConstructor
 @Entity
@@ -48,12 +46,6 @@ public class PurchaseOrderItem {
 
     @Column(name = "quantity")
     private Integer quantity;
-
-    @Column(name = "create_at")
-    private Instant createAt;
-
-    @Column(name = "update_at")
-    private Instant updateAt;
 
     public PurchaseOrderItem(Integer productId, Integer purchaseOrderId, Integer itemId) {
         setItemId(itemId);

@@ -1,6 +1,6 @@
 package vn.fx.qh.sapo.entities.product;
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Entity
 @Accessors(chain = true)
 @Table(name = "product")
-public class Product {
+public class   Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,11 +40,13 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductStatus status;
 
-    @Column(name = "create_at", nullable = false, length = 50)
-    private Instant createAt;
+    @Setter(AccessLevel.NONE)
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
 
-    @Column(name = "update_at", nullable = false, length = 50)
-    private Instant updateAt;
+    @Setter(AccessLevel.NONE)
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
 
     @Column(name = "description", nullable = false, length = 50)
     private String description;
@@ -126,5 +128,14 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @PrePersist
+    public void prePersist() {
+        createdAt =Instant.now();
+    }
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt =Instant.now();
     }
 }

@@ -1,7 +1,7 @@
 package vn.fx.qh.sapo.entities.payment.sale;
 
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,6 +31,17 @@ public class PaymentSaleOrder {
     @Column(name = "paid", nullable = false, precision = 10, scale = 2)
     private BigDecimal paid;
 
+    @Column(name = "description", nullable = false, length = 200)
+    private String description;
+
+    @Setter(AccessLevel.NONE)
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
+
+    @Setter(AccessLevel.NONE)
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
     private Employee employee;
@@ -44,10 +55,6 @@ public class PaymentSaleOrder {
 
     @Column(name = "payment_method_id", insertable = false, updatable = false)
     private Integer paymentMethodId;
-
-    @Column(name = "create_at", nullable = false, length = 50)
-    private Instant createAt;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private SaleOrder order;
@@ -62,8 +69,6 @@ public class PaymentSaleOrder {
     @Column(name = "customer_id", insertable = false, updatable = false)
     private Integer customerId;
 
-    @Column(name = "description", nullable = false, length = 200)
-    private String description;
 
     public PaymentSaleOrder setEmployeeId(Integer employeeId) {
         this.employee = new Employee(this.employeeId = employeeId);
@@ -90,5 +95,14 @@ public class PaymentSaleOrder {
         setPaymentMethodId(paymentMethodId);
         setOrderId(paymentMethodId);
         setCustomerId(customerId);
+    }
+
+    @PrePersist
+    public void prePersist() {
+        createdAt =Instant.now();
+    }
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt =Instant.now();
     }
 }

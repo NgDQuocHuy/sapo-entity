@@ -52,11 +52,11 @@ public class SaleOrderItem {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "create_at")
-    private Instant createAt;
+    @Column(name = "created_at")
+    private Instant createdAt;
 
-    @Column(name = "update_at")
-    private Instant updateAt;
+    @Column(name = "updated_at")
+    private Instant updatedAt;
 
     @Column(name = "tax", nullable = false)
     private Float tax;

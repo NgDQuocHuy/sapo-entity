@@ -1,15 +1,15 @@
 package vn.fx.qh.sapo.entities.order.purchase;
 
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import vn.fx.qh.sapo.entities.employee.*;
-import vn.fx.qh.sapo.entities.order.*;
-import vn.fx.qh.sapo.entities.payment.purchase.*;
-import vn.fx.qh.sapo.entities.product.supplier.*;
+import vn.fx.qh.sapo.entities.employee.Employee;
+import vn.fx.qh.sapo.entities.order.OrderStatus;
+import vn.fx.qh.sapo.entities.order.OrderStatusCode;
+import vn.fx.qh.sapo.entities.product.supplier.Supplier;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -63,8 +63,13 @@ public class PurchaseOrder {
     @Column(name = "payment_status_code", insertable = false, updatable = false)
     private OrderStatusCode paymentStatusCode;
 
-    @Column(name = "create_at", nullable = false, length = 50)
-    private Instant createAt;
+    @Setter(AccessLevel.NONE)
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
+
+    @Setter(AccessLevel.NONE)
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
 
     @Column(name = "total", nullable = false, precision = 10, scale = 2)
     private BigDecimal total;
@@ -92,6 +97,15 @@ public class PurchaseOrder {
     public PurchaseOrder setEmployeeId(Integer employeeId) {
         this.employee = new Employee(this.employeeId = employeeId);
         return this;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        createdAt =Instant.now();
+    }
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt =Instant.now();
     }
 
 }

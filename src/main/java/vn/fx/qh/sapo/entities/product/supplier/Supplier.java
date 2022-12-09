@@ -1,24 +1,14 @@
 package vn.fx.qh.sapo.entities.product.supplier;
 
-import lombok.experimental.Accessors;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 import vn.fx.qh.sapo.entities.employee.Employee;
 import vn.fx.qh.sapo.entities.payment.PaymentMethod;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
@@ -67,11 +57,6 @@ public class Supplier {
     @Column(name = "payment_method_id", updatable = false, insertable = false)
     private Integer paymentMethodId;
 
-    @Column(name = "create_at", nullable = false)
-    private Instant createAt;
-
-    @Column(name = "update_at", nullable = false)
-    private Instant updateAt;
 
     public Supplier(Integer id) {
         this.id = id;
@@ -92,6 +77,5 @@ public class Supplier {
         this.paymentMethod = new PaymentMethod(this.paymentMethodId = paymentMethodId);
         return this;
     }
-
 
 }

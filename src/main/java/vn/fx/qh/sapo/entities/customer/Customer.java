@@ -1,11 +1,7 @@
 package vn.fx.qh.sapo.entities.customer;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
-import org.hibernate.annotations.CreationTimestamp;
 import vn.fx.qh.sapo.entities.employee.Employee;
 
 import javax.persistence.*;
@@ -62,12 +58,12 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     private CustomerGender customerGender;
 
-    @CreationTimestamp
-    @Column(name = "create_at", nullable = false, length = 50)
-    private Instant createAt;
-
-    @Column(name = "update_at", nullable = false, length = 50)
-    private Instant updateAt;
+    @Setter(AccessLevel.NONE)
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
+    @Setter(AccessLevel.NONE)
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
 
     @OneToMany(targetEntity = ShippingAddress.class, mappedBy = "customer")
     private Set<ShippingAddress> shippingAddressSet;
@@ -93,5 +89,14 @@ public class Customer {
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
+
+    @PrePersist
+    public void prePersist() {
+        createdAt =Instant.now();
+    }
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt =Instant.now();
+    }
 
 }

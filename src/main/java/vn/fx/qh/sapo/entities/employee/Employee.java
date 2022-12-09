@@ -1,12 +1,13 @@
 package vn.fx.qh.sapo.entities.employee;
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 @Entity
 @Setter
@@ -40,9 +41,23 @@ public class Employee {
     @Column(name = "gender", length = 50, nullable = false)
     private String gender;
 
+    @Setter(AccessLevel.NONE)
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
+
+    @Setter(AccessLevel.NONE)
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
+
     public Employee(Integer id) {
-       this.id = id;
+        this.id = id;
     }
-
-
+    @PrePersist
+    public void prePersist() {
+        createdAt =Instant.now();
+    }
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt =Instant.now();
+    }
 }

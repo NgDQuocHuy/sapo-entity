@@ -1,10 +1,8 @@
 package vn.fx.qh.sapo.entities.product;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import org.hibernate.annotations.CreationTimestamp;
 import vn.fx.qh.sapo.entities.employee.Employee;
 import vn.fx.qh.sapo.entities.order.purchase.PurchaseOrder;
 import vn.fx.qh.sapo.entities.product.supplier.Supplier;
@@ -31,12 +29,11 @@ public class Item {
     @Column(name = "price")
     private BigDecimal price;
 
-    @CreationTimestamp
-    @Column(name = "create_at", nullable = false)
-    private Instant createAt;
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
 
-    @Column(name = "update_at", length = 20)
-    private Instant updateAt;
+    @Column(name = "updated_at", length = 20)
+    private Instant updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
@@ -78,7 +75,7 @@ public class Item {
     @Column(name = "defective")
     private Integer defective;
 
-    public Item (Integer productId, Integer supplierId, Integer orderId, Integer employeeId){
+    public Item(Integer productId, Integer supplierId, Integer orderId, Integer employeeId) {
         setProductId(productId);
         setSupplierId(supplierId);
         setOrderId(orderId);
@@ -109,4 +106,13 @@ public class Item {
         return this;
     }
 
+    @PrePersist
+    public void prePersist() {
+        createdAt = Instant.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = Instant.now();
+    }
 }

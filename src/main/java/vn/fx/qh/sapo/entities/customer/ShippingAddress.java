@@ -30,7 +30,7 @@ public class ShippingAddress {
     @Column(name = "`email`", length = 50)
     private String email;
 
-    @Column(name = "`line1`", nullable = false, length = 50)
+    @Column(name = "`line1`", length = 50)
     private String line1;
 
     @Column(name = "line2", length = 50)
@@ -79,6 +79,6 @@ public class ShippingAddress {
 
     public ShippingAddress setCustomerId(Integer customerId) {
         this.customer = new Customer(this.customerId = customerId);
-      return this;
+        return this;
     }
 }

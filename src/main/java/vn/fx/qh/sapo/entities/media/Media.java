@@ -1,17 +1,14 @@
 package vn.fx.qh.sapo.entities.media;
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import vn.fx.qh.sapo.entities.product.Product;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -39,19 +36,19 @@ public class Media {
     @Column(name = "is_main")
     private Boolean isMain;
 
-    @Column(name = "created_at", updatable = false)
-    @CreationTimestamp
+    @Setter(AccessLevel.NONE)
+    @Column(name = "created_at", nullable = false)
     private Instant createdAt;
 
-    @Column(name = "created_by")
-    private Long createdBy;
-
-    @Column(name = "updated_at")
-    @UpdateTimestamp
+    @Setter(AccessLevel.NONE)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
+    @Column(name = "created_by")
+    private Integer creattedBy;
+
     @Column(name = "updated_by")
-    private Long updatedBy;
+    private Integer updatedBy;
 
     @Column(name = "product_id", insertable = false, updatable = false)
     private Integer productId;
@@ -62,5 +59,14 @@ public class Media {
 
     public Media(Product product) {
         setProduct(product);
+    }
+
+    @PrePersist
+    public void prePersist() {
+        createdAt =Instant.now();
+    }
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt =Instant.now();
     }
 }

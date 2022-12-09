@@ -1,6 +1,6 @@
 package vn.fx.qh.sapo.entities.payment.purchase;
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +12,6 @@ import vn.fx.qh.sapo.entities.payment.PaymentMethod;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -44,8 +43,13 @@ public class PaymentPurchaseOrder {
     @Column(name = "payment_method_id", insertable = false, updatable = false)
     private Integer paymentMethodId;
 
-    @Column(name = "create_at", nullable = false, length = 50)
-    private Instant createAt;
+    @Setter(AccessLevel.NONE)
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
+
+    @Setter(AccessLevel.NONE)
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "purchase_order_id")
@@ -77,5 +81,14 @@ public class PaymentPurchaseOrder {
         setEmployeeId(employeeId);
         setPaymentMethodId(paymentMethodId);
         setPurchaseOrderId(paymentMethodId);
+    }
+
+    @PrePersist
+    public void prePersist() {
+        createdAt =Instant.now();
+    }
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt =Instant.now();
     }
 }
