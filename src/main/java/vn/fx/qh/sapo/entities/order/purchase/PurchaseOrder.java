@@ -13,12 +13,12 @@ import vn.fx.qh.sapo.entities.product.supplier.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.Instant;
 
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 @Table(name = "purchase_order")
 public class PurchaseOrder {
@@ -64,7 +64,7 @@ public class PurchaseOrder {
     private OrderStatusCode paymentStatusCode;
 
     @Column(name = "create_at", nullable = false, length = 50)
-    private String createAt;
+    private Instant createAt;
 
     @Column(name = "total", nullable = false, precision = 10, scale = 2)
     private BigDecimal total;

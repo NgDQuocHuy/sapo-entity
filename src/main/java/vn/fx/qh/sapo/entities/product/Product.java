@@ -5,18 +5,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import vn.fx.qh.sapo.entities.product.tax.ProductTax;
 import vn.fx.qh.sapo.entities.product.tax.Tax;
 import vn.fx.qh.sapo.entities.product.tax.TaxType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -40,10 +41,10 @@ public class Product {
     private ProductStatus status;
 
     @Column(name = "create_at", nullable = false, length = 50)
-    private String createAt;
+    private Instant createAt;
 
     @Column(name = "update_at", nullable = false, length = 50)
-    private String updateAt;
+    private Instant updateAt;
 
     @Column(name = "description", nullable = false, length = 50)
     private String description;
@@ -80,16 +81,19 @@ public class Product {
 
     @Column(name = "apply_tax", nullable = false, columnDefinition = "boolean default false")
     private Boolean applyTax = false;
-
-    @OneToMany(targetEntity = Tax.class)
-    private Set<Tax> taxs;
+    @Column(name = "is_tax_inclusive", nullable = false, columnDefinition = "boolean default false")
+    private Boolean isTaxInclusive = false;
+    @OneToMany(targetEntity = ProductTax.class, mappedBy = "id.tax")
+    private Set<ProductTax> productTaxSet;
 
     public List<Tax> getTaxSale() {
-        return taxs.stream().filter(tax -> tax.getType().equals(TaxType.TAX_SALE.getValue())).collect(Collectors.toList());
+        return productTaxSet.stream().filter(productTax -> productTax.getTaxType() == TaxType.TAX_SALE)
+                .map(ProductTax::getTax).collect(Collectors.toList());
     }
 
     public List<Tax> getTaxPurchase() {
-        return taxs.stream().filter(tax -> tax.getType().equals(TaxType.TAX_PURCHASE.getValue())).collect(Collectors.toList());
+        return productTaxSet.stream().filter(productTax -> productTax.getTaxType() == TaxType.TAX_PURCHASE)
+                .map(ProductTax::getTax).collect(Collectors.toList());
     }
 
     public Product(Integer categoryId, Integer brandId) {

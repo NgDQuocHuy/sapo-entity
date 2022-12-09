@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 @Entity
 @Table(name = "delivery_status")

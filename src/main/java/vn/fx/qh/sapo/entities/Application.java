@@ -12,7 +12,6 @@ import java.util.UUID;
 @Data
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 @Table(name = "application")
 public class Application {

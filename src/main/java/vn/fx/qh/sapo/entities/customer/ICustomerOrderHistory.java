@@ -1,6 +1,7 @@
 package vn.fx.qh.sapo.entities.customer;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Date;
 
 public interface ICustomerOrderHistory {
@@ -25,7 +26,7 @@ public interface ICustomerOrderHistory {
 
     BigDecimal getDebt();
 
-    Date getCreate_at();
+    Instant getCreate_at();
 
 
 }

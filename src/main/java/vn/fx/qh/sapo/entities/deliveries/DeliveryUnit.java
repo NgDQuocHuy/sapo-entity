@@ -11,7 +11,6 @@ import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 @Entity
 @Table(name = "delivery_unit")

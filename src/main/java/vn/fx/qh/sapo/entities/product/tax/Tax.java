@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -27,8 +26,6 @@ public class Tax {
     private String title;
     @Column(name = "tax", nullable = false)
     private float tax;
-    @Column(name = "type", nullable = false, length = 50)
-    private String type;
 
     @Override
     public boolean equals(Object o) {

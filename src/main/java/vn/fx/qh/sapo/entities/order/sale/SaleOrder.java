@@ -19,7 +19,6 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 @Entity
 @Table(name = "sale_order")

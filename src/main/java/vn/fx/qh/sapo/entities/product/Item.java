@@ -15,7 +15,6 @@ import java.time.Instant;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 @Entity
 @Table(name = "item")

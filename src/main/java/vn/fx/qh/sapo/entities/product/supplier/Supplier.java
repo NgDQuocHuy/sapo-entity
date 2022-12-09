@@ -19,12 +19,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import java.time.Instant;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "supplier")
 @Accessors(chain = true)
 public class Supplier {
@@ -68,10 +68,10 @@ public class Supplier {
     private Integer paymentMethodId;
 
     @Column(name = "create_at", nullable = false)
-    private String createAt;
+    private Instant createAt;
 
     @Column(name = "update_at", nullable = false)
-    private String updateAt;
+    private Instant updateAt;
 
     public Supplier(Integer id) {
         this.id = id;

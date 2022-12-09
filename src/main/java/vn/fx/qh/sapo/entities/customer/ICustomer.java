@@ -1,6 +1,7 @@
 package vn.fx.qh.sapo.entities.customer;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Date;
 
 public interface ICustomer {
@@ -14,14 +15,14 @@ public interface ICustomer {
     String getEmail();
     String getSTATUS();
     String getCUSTOMER_GROUP();
-    Date getCREATE_AT();
-    Date getUPDATE_AT();
+    Instant getCREATE_AT();
+    Instant getUPDATE_AT();
     BigDecimal getTOTAL_PRICE_SPENDING();
     BigDecimal getORDER_DEBT();
     int getQUANTITY_ITEMS_ORDER();
     String getEMPLOYEE_NAME();
-    Date getPRODUCT_ORDER_FINAL();
+    Instant getPRODUCT_ORDER_FINAL();
     int getQUANTITY_PRODUCT_ORDER();
     int getQUANTITY_PRODUCT_PAY();
-    Date getDAY_ORDER_LATTER();
+    Instant getDAY_ORDER_LATTER();
 }

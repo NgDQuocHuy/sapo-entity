@@ -2,6 +2,7 @@ package vn.fx.qh.sapo.entities.customer;
 
 
 import java.math.BigDecimal;
+import java.time.Instant;
 
 public interface ICustomerOwer {
 
@@ -9,7 +10,7 @@ public interface ICustomerOwer {
 
     String getEMPLOYEE_NAME();
 
-    String getCREATEAT();
+    Instant getCREATEAT();
 
     BigDecimal getTRANSACTION();
 

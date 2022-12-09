@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 @Entity
 @Table(name = "partner_type")

@@ -11,12 +11,12 @@ import vn.fx.qh.sapo.entities.payment.PaymentMethod;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 @Entity
 @Table(name = "payment_purchase_order")
@@ -45,7 +45,7 @@ public class PaymentPurchaseOrder {
     private Integer paymentMethodId;
 
     @Column(name = "create_at", nullable = false, length = 50)
-    private Date createAt;
+    private Instant createAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "purchase_order_id")

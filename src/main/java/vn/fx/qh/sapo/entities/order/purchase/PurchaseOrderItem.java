@@ -11,7 +11,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Getter

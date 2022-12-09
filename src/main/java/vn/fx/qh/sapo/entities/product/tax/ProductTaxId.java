@@ -14,7 +14,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
 @Embeddable

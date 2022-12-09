@@ -4,11 +4,10 @@ import lombok.*;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
-
+import java.time.Instant;
 
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 @Accessors(chain = true)
 public class ICustomerOwerImpl {
@@ -16,7 +15,7 @@ public class ICustomerOwerImpl {
 
     private String employee_name;
 
-    private  String create_at;
+    private Instant create_at;
 
     private BigDecimal transaction;
 

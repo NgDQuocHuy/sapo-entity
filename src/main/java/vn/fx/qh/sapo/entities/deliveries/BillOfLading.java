@@ -11,7 +11,6 @@ import vn.fx.qh.sapo.entities.order.sale.SaleOrder;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 @Table(name = "bill_of_lading")
 public class BillOfLading {

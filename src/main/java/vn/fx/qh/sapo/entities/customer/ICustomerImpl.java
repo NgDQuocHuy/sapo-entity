@@ -7,13 +7,13 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Date;
 
 
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 public class ICustomerImpl
 {
@@ -25,7 +25,7 @@ public class ICustomerImpl
     private BigDecimal spend;
     private int numberProductOrdered;
     private String employeeName;
-    private Date lastDateOrdered;
+    private Instant lastDateOrdered;
     private int numberQuantityOrdered;
     private int numberQuantityReturned;
 

@@ -10,12 +10,12 @@ import org.hibernate.annotations.UpdateTimestamp;
 import vn.fx.qh.sapo.entities.product.Product;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "media")
 @Accessors(chain = true)
@@ -41,14 +41,14 @@ public class Media {
 
     @Column(name = "created_at", updatable = false)
     @CreationTimestamp
-    private Date createdAt;
+    private Instant createdAt;
 
     @Column(name = "created_by")
     private Long createdBy;
 
     @Column(name = "updated_at")
     @UpdateTimestamp
-    private Date updatedAt;
+    private Instant updatedAt;
 
     @Column(name = "updated_by")
     private Long updatedBy;

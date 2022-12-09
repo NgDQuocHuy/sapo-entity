@@ -17,7 +17,6 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "customer")
 @Accessors(chain = true)
 public class Customer {

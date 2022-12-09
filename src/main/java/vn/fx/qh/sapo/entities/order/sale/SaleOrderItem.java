@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
 @Entity

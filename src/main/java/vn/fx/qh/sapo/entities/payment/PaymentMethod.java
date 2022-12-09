@@ -17,7 +17,6 @@ import javax.persistence.GenerationType;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "payment_method")
 @Accessors(chain = true)
 public class PaymentMethod {

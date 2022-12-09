@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 @Table(name = "shipping_address")
 public class ShippingAddress {

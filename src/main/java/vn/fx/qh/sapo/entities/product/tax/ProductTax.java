@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -23,10 +22,14 @@ public class ProductTax {
     private Integer productId;
     @Column(name = "tax_id", insertable = false, updatable = false)
     private Integer taxId;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "tax_type")
     private TaxType taxType;
+
+    public Tax getTax() {
+        return id.getTax();
+    }
+
 
     @Override
     public boolean equals(Object o) {

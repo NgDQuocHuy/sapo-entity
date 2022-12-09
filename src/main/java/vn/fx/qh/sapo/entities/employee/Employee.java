@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "employee")
 @Accessors(chain = true)
 public class Employee {
